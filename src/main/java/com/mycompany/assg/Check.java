@@ -17,29 +17,23 @@ public class Check {
     StudListTable studlist;
     StudentList studacc;
     StudNotSubmitted notsb;
-    Submitted s1;
-    NotSubmitted s2;
-    UnknownStud u1;
+    Display s1;
     Excel e1;
     CompareStud compare;
-    
-     public void run(){
+
+    public void run() {
         nostud = new NoStud(link);
-        nosub =new StudSubmitted(link2);
-        studlist = new StudListTable(link,nostud.comStud());
-        studacc =new StudentList(link2,nosub.comStud());
+        nosub = new StudSubmitted(link2);
+        studlist = new StudListTable(link, nostud.comStud());
+        studacc = new StudentList(link2, nosub.comStud());
         studacc.comData();
         studlist.comData();
-        compare=new CompareStud(studacc.getAcc(),studlist.getList());
+        compare = new CompareStud(studacc.getAcc(), studlist.getList());
         compare.check2();
-        notsb =new StudNotSubmitted(compare.getCompare(),studlist.getList());
-        s1=new Submitted (compare.getCompare());
-        s2=new NotSubmitted (notsb.compare());
-        u1=new UnknownStud(compare.getUnknown());
-        e1 =new Excel(compare.getCompare(),notsb.getNotsub(),compare.getUnknown());
+        notsb = new StudNotSubmitted(compare.getCompare(), studlist.getList());
+        s1 = new Display(compare.getCompare(), notsb.compare(), compare.getUnknown());
+        e1 = new Excel(compare.getCompare(), notsb.getNotsub(), compare.getUnknown());
         s1.run();
-        s2.run();
-        u1.run();
         e1.run();
-     }
+    }
 }
